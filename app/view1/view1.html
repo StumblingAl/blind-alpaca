@@ -1,1 +1,114 @@
-<p>This is the partial for view 1.</p>
+
+<p>The weathers</p>
+
+
+    <div ng-controller="View1Ctrl as vc">
+        <h1>{{vc.foo}}</h1>
+
+        <p>{{vc.message}}</p>
+
+        <!--<pre>{{vc.users | json}}</pre>-->
+
+        <button ng-click="vc.getData()">Get People Data</button>
+        <br />
+        <br />
+        <table>
+            <tr ng-repeat="user in vc.users">
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+            </tr>
+        </table>
+        <br />
+        <br />
+
+
+        Enter a city to search for weathers:<br/>
+        <input type="text" ng-model="vc.city" name="text" placeholder="Enter City..."/>
+        <br/>
+        <input type="radio" ng-model="vc.dayOrFive" value="1">&nbsp;Todays weather
+        <br/>
+        <input type="radio" ng-model="vc.dayOrFive" value="5">&nbsp;5 Day forecast
+        <br/>
+        <button ng-click="vc.selectType()" class="btn btn-default">Bring Me Weather!</button>
+
+        <br /><br/>
+        <table ng-if="vc.weathers" class="table table-striped">
+            <tr>
+                <td>For le locations... {{ vc.weathers.name }}</td>
+            </tr>
+            <tr>
+                <td>Das Windies... {{ vc.weathers.wind.speed }}</td>
+            </tr>
+            <tr>
+                <td>A La Temps... {{ vc.weathers.main.temp}}</td>
+            </tr>
+        </table>
+
+
+
+        <table ng-if="vc.forecast" class="table table-striped">
+            {{vc.forecast.city.name}}
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Temp</th>
+            </tr>
+            <tr ng-repeat="date in vc.forecast.list">
+                <td>{{ date.dt_txt }}</td>
+                <td>{{ date.weather[0].description }}</td>
+                <td>{{ date.main.temp }}</td>
+
+            </tr>
+
+        </table>
+
+
+        <p ng-if="vc.errors">
+            {{vc.errors}}
+        </p>
+
+
+        <br />
+
+        <table class="table table-striped">
+
+            <tr>
+                <th>Date</th>
+            </tr>
+            <tr ng-repeat="date in vc.forecast.list">
+                <th>&nbsp;</th>
+                <th>{{date.dt_txt | date:'dd-MM-yyyy HH:mm:ss'}}</th>
+                <th>Time</th>
+                <th>Time</th>
+                <th>Time</th>
+                <th>Time</th>
+                <th>Time</th>
+                <th>Time</th>
+                <th>Time</th>
+            </tr>
+            <tr>
+                <th>&nbsp;</th>
+                <td>Desc</td>
+                <td>Desc</td>
+                <td>Desc</td>
+                <td>Desc</td>
+                <td>Desc</td>
+                <td>Desc</td>
+                <td>Desc</td>
+                <td>Desc</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+
+
+<!--
+
+date | time1 | time2 | time3 | time 4
+     | desc  | desc  | desc  | desc
+     | temp  | temp  | temp  | temp
+
+
+-->
