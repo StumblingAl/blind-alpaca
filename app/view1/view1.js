@@ -76,147 +76,32 @@ angular.module('myApp.view1', ['ngRoute', 'angularSpinner'])
 
                     vc.weathers.sys.sunrise = moment.unix(vc.weathers.sys.sunrise).format("HH:mm:ss");
                     vc.weathers.sys.sunset = moment.unix(vc.weathers.sys.sunset).format("HH:mm:ss");
+                    //Better display, include imgs for the sunrise and sunset (glphicons etc instead of text in the html
 
 
                 }
                 else if (days == '5') {
 
-                    var i;
-                    var toSplit;
-                    var time ;//= [];
-                    var timeArray = [];
-                    var day;
-                    var dayArray = [];
-                    var foreArray = [];
-
                     vc.forecast = response.data;
-                    // for (i in vc.forecast.list) {
-                    //
-                    //
-                    //     vc.forecast.list[i].dt_txt = moment(vc.forecast.list[i].dt_txt).format("dddd, MMMM Do YYYY;h:mm:ss");
-                    //     toSplit = vc.forecast.list[i].dt_txt.split(";");
-                    //     time = toSplit[1];
-                    //     day = toSplit[0];
-                    //
-                    //
-                    //     vc.forecast.list[i].time = (time);
-                    //     vc.forecast.list[i].day = (day);
-                    //
-                    //     timeArray.push(time);
-                    //
-                    //     if (dayArray.indexOf(day) == -1){ //Only add each date once
-                    //         dayArray.push(day);
-                    //     }
-                    //
-                    //
-                    // }
-
-                    // vc.testData = [
-                    //     {
-                    //         day: 'monday',
-                    //         forecast: {
-                    //             midnight: {
-                    //                 desc: 'very dark',
-                    //                 wind: '5',
-                    //                 temp: '5'
-                    //             },
-                    //             three: {
-                    //                 desc: 'sunny',
-                    //                 wind: '5',
-                    //                 temp: '10'
-                    //             },
-                    //             six: {
-                    //                 desc: 'rain',
-                    //                 wind: '10',
-                    //                 temp: '10'
-                    //             },
-                    //             nine: {
-                    //                 desc: 'thunder',
-                    //                 wind: '15',
-                    //                 temp: '10'
-                    //             },
-                    //         },
-                    //     },
-                    //     {
-                    //         day: 'tuesday',
-                    //         forecast: {
-                    //             midnight: {
-                    //                 desc: 'very dark',
-                    //                 wind: '5',
-                    //                 temp: '5'
-                    //             },
-                    //             three: {
-                    //                 desc: 'sunny',
-                    //                 wind: '5',
-                    //                 temp: '10'
-                    //             },
-                    //             six: {
-                    //                 desc: 'rain',
-                    //                 wind: '10',
-                    //                 temp: '10'
-                    //             },
-                    //             nine: {
-                    //                 desc: 'thunder',
-                    //                 wind: '15',
-                    //                 temp: '10'
-                    //             },
-                    //         },
-                    //
-                    //     },
-                    // ];
-
-                    // var realData =  [{
-                    //     "dt": 1494817200,
-                    //     "main": {
-                    //         "temp": 5.66,
-                    //         "temp_min": 5.66,
-                    //         "temp_max": 7.22,
-                    //         "pressure": 1030.61,
-                    //         "sea_level": 1038.31,
-                    //         "grnd_level": 1030.61,
-                    //         "humidity": 97,
-                    //         "temp_kf": -1.56
-                    //     },
-                    //     "weather": [
-                    //         {
-                    //             "id": 802,
-                    //             "main": "Clouds",
-                    //             "description": "scattered clouds",
-                    //             "icon": "03n"
-                    //         }
-                    //     ],
-                    //     "clouds": {
-                    //         "all": 48
-                    //     },
-                    //     "wind": {
-                    //         "speed": 1.91,
-                    //         "deg": 155.51
-                    //     },
-                    //     "rain": {},
-                    //     "sys": {
-                    //         "pod": "n"
-                    //     },
-                    //     "dt_txt": "2017-05-15 03:00:00"
-                    // }]
 
                     vc.fiveDayForecast = [];
                     var currentDay = null;
 
-                    angular.forEach(vc.forecast.list, function(timeForecast, key){
-                        console.log("I'm doing a thing", timeForecast);
+                    angular.forEach(vc.forecast.list, function(timeForecast, key){ //for every obj in forecast list
+                        //console.log("I'm doing a thing", timeForecast);
                         //moment needs in milliseconds
-                        var timestamp = moment(timeForecast.dt * 1000);
+                        var timestamp = moment(timeForecast.dt * 1000); //without in milliseconds, starts from wrong point - 1970
 
-                        console.log('check', timestamp.hour());
+                        //console.log('check', timestamp.hour());
                         //if there is a current day and it's midnight add the day to the forecast
-                        if(currentDay &&  timestamp.hour() <= 1){
-                            console.log('pushin', currentDay);
+                        if(currentDay &&  timestamp.hour() <= 1){ //BST/GMT issue. Further research needed into handing timezones with momentJS
+                            //console.log('pushin', currentDay);
                             vc.fiveDayForecast.push(currentDay);
                         }
 
                         //if there is no current day or it's midnight make a new day
                         if(!currentDay || timestamp.hour() <= 1){
-                            console.log('creatin');
+                            //console.log('creatin');
                             currentDay = {
                                 'day': timestamp.format('dddd'),
                                 'forecast': []
@@ -233,37 +118,7 @@ angular.module('myApp.view1', ['ngRoute', 'angularSpinner'])
                             }
                         )
                     });
-
-//                     var l;
-//                     for (var j=0; j<=dayArray.length;j++) {
-//                        // for (l in vc.forecast.list) {
-//
-//                             foreArray.push(
-//                                 {
-//                                     date: dayArray[j],
-//                                     forecast: {
-//                                         tim1: {
-//                                             time: vc.forecast.list[j].time,
-//                                             temp: vc.forecast.list[j].main.temp,
-//                                             wind: vc.forecast.list[j].wind.speed,
-//                                         },
-//                                         tim2: {
-//                                              time: vc.forecast.list[j+1].time,
-//                                              temp: vc.forecast.list[j+1].main.temp,
-//                                              wind: vc.forecast.list[j+1].wind.speed,
-//                                         },
-//
-//
-//                                     }
-//
-//                                 }
-//                             );
-//                         //}
-//                     }
-//
-// console.log(foreArray);
                 }
-
 
             }, function errorCallback(response) {
 
@@ -288,6 +143,8 @@ angular.module('myApp.view1', ['ngRoute', 'angularSpinner'])
                 usSpinnerService.stop('spinner-1');
 
             }
+
+            //for ref: https://github.com/urish/angular-spinner spinner used and imported as per link
 
 
         };

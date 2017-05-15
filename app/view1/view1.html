@@ -54,9 +54,9 @@
 
 
     <!--return test data for now-->
-    <table class="table table-striped" ng-repeat="date in vc.fiveDayForecast">
+    <table class="table table-striped" ng-if="vc.fiveDayForecast" ng-repeat="date in vc.fiveDayForecast">
         <tr>
-            <td rowspan="8">{{date.day}}</td>
+            <td rowspan="8" width="15%">{{date.day}}</td>
         </tr>
 
         <tr>
@@ -71,61 +71,16 @@
         </tr>
         <tr>
             <td ng-repeat="time in date.forecast">
-                {{time.wind}}
+                {{time.wind}} mph
             </td>
         </tr>
         <tr>
             <td ng-repeat="time in date.forecast">
-                {{time.temp}}
+                {{time.temp}} C
             </td>
         </tr>
     </table>
 
-
-
-
-
-    <!--</table> <table class="table table-striped" ng-repeat="occ in vc.days5">-->
-        <!--<tr>-->
-            <!--<td rowspan="6">{{occ.day}}</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-            <!--<td>0000</td>-->
-            <!--<td>0300</td>-->
-            <!--<td>0600</td>-->
-            <!--<td>0900</td>-->
-            <!--<td>1200</td>-->
-            <!--<td>1500</td>-->
-            <!--<td>1800</td>-->
-            <!--<td>2100</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-            <!--<td>{{occ.1.am3.temp}}</td>-->
-            <!--<td>{{date.return1.three.desc}}</td>-->
-            <!--<td>{{date.return1.six.desc}}</td>-->
-            <!--<td>{{date.return1.nine}}</td>-->
-            <!--<td>{{date.return1.midday}}</td>-->
-            <!--<td>{{date.return1.threePM}}</td>-->
-            <!--<td>{{date.return1.sixPM}}</td>-->
-            <!--<td>{{date.return1.ninePM}}</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-            <!--<td>{{date.return1.midnight}}</td>-->
-            <!--<td>{{date.return1.three.wind}}</td>-->
-            <!--<td>{{date.return1.six}}</td>-->
-            <!--<td>{{date.return1.nine}}</td>-->
-            <!--<td>{{date.return1.midday}}</td>-->
-            <!--<td>{{date.return1.threePM}}</td>-->
-            <!--<td>{{date.return1.sixPM}}</td>-->
-            <!--<td>{{date.return1.ninePM}}</td>-->
-        <!--</tr>-->
-    <!--</table>-->
-
-            <!--<th rowspan="6">{{date.day}}</th>-->
-            <!--<td>{{date.time}}</td>-->
-            <!--<td>{{ date.weather[0].description }}</td>-->
-            <!--<td>{{ date.main.temp }}</td>-->
-            <!--<td>{{ date.wind.speed }}</td>-->
 </div>
 
 

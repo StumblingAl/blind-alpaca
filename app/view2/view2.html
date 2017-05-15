@@ -1,30 +1,49 @@
-<p>This is the partial for view 2.</p>
-<p>
-    Showing of 'interpolate' filter:
-    {{ 'Current version is v%VERSION%.' | interpolate }}
-</p>
+<!--<p>This is the partial for view 2.</p>-->
+<!--<p>-->
+    <!--Showing of 'interpolate' filter:-->
+    <!--{{ 'Current version is v%VERSION%.' | interpolate }}-->
+<!--</p>-->
 
 
-<div ng-controller="View2Ctrl as vc2">
+<!--<div ng-controller="View2Ctrl as vc2">-->
 
-    <h1>{{vc2.foo}}</h1>
+    <!--<h1>{{vc2.foo}}</h1>-->
 
-    <p>{{vc2.message}}</p>
+    <!--<p>{{vc2.message}}</p>-->
 
-    <!--<pre>{{vc.users | json}}</pre>-->
+    <!--&lt;!&ndash;<pre>{{vc.users | json}}</pre>&ndash;&gt;-->
 
-    <button ng-click="vc2.getData()">Get People Data</button>
-    <br/>
-    <br/>
-    <table>
-        <tr ng-repeat="user in vc2.users">
-            <td>{{ user.name }}</td>
-            <td>{{ user.email }}</td>
-        </tr>
-    </table>
-    <br/>
-    <br/>
+    <!--<button ng-click="vc2.getData()">Get People Data</button>-->
+    <!--<br/>-->
+    <!--<br/>-->
+    <!--<table>-->
+        <!--<tr ng-repeat="user in vc2.users">-->
+            <!--<td>{{ user.name }}</td>-->
+            <!--<td>{{ user.email }}</td>-->
+        <!--</tr>-->
+    <!--</table>-->
+    <!--<br/>-->
+    <!--<br/>-->
 
 
-</div>
+<!--</div>-->
 
+
+
+<h4>Today's weather: </h4>
+<pre>url = 'http://api.openweathermap.org/data/2.5/weather?';
+    param = {
+    q: vc.city, //user input
+    APPID: apiKey, //set variable to ensure request is accepted
+    units: 'metric',
+    }</pre>
+
+
+<h4>5 Day weather: </h4>
+<pre>url = 'http://api.openweathermap.org/data/2.5/forecast?'
+    param = {
+    q: vc.city, //user input
+    mode: 'json',
+    APPID: apiKey, //set variable to ensure request is accepted
+    units: 'metric',
+    }</pre>
