@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS App</title>
+  <title>SometimesSunny</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -19,16 +19,45 @@
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="#!/view1">view1</a></li>
-    <li><a href="#!/view2">view2</a></li>
-  </ul>
+  <!--<ul class="menu">-->
+    <!--<li><a href="#!/view1">view1</a></li>-->
+    <!--<li><a href="#!/view2">view2</a></li>-->
+  <!--</ul>-->
 
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
+  <div class="container">
 
-  <div ng-view></div>
+      <!--<div class="row">-->
+          <!--<div class="col-md-12"-->
+              <div class="page-header">
+                  <h1>SometimesSunny <small>Come rain or sometimes shine</small></h1>
+              </div>
+          <!--</div>-->
+      <!--</div>-->
+
+      <div class="row">
+          <div class="col-md-3">
+              <ul class="nav nav-pills nav-stacked">
+                  <li role="presentation"><a href="#!/view1">Home</a></li>
+                  <li role="presentation"><a href="#!/view2">API References</a></li>
+                  <li role="presentation"><a href="#!/view3">Explanation</a></li>
+              </ul>
+          </div>
+
+          <div class="col-md-9">
+              <div ng-view></div>
+          </div>
+
+          <!--<div class="col-md-3"> </div>-->
+
+      </div>
+
+
+      <!--[if lt IE 7]>
+          <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+
+
+  </div>
 
   <!--<div>Angular seed app: v<span app-version></span></div>-->
 
@@ -39,8 +68,15 @@
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/moment/min/moment.min.js"></script>
   <script src="app.js"></script>
+
+  <script type="text/javascript" src="http://fgnass.github.io/spin.js/spin.min.js"></script>
+
+  <script type="text/javascript" src="bower_components/angular-spinner/dist/angular-spinner.js"></script>
+
+
   <script src="view1/view1.js"></script>
   <script src="view2/view2.js"></script>
+  <script src="view3/view3.js"></script>
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>

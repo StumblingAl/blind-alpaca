@@ -23,3 +23,26 @@
   content: "|";
   padding-right: 0.3em;
 }
+
+
+h1 {
+  color: #ff9600;
+}
+
+.page-header {
+    border-bottom-color: #b3d4fc;
+}
+
+.alert-info{
+    background-color: #ffdfb1;
+    /*color: #d3d3d3;*/
+    color: #000;
+    border-color: #ff9600;
+}
+
+
+.error{
+    margin-left:3%;
+    color:red;
+
+}

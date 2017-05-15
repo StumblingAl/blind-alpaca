@@ -1,5 +1,30 @@
 <p>This is the partial for view 2.</p>
 <p>
-  Showing of 'interpolate' filter:
-  {{ 'Current version is v%VERSION%.' | interpolate }}
+    Showing of 'interpolate' filter:
+    {{ 'Current version is v%VERSION%.' | interpolate }}
 </p>
+
+
+<div ng-controller="View2Ctrl as vc2">
+
+    <h1>{{vc2.foo}}</h1>
+
+    <p>{{vc2.message}}</p>
+
+    <!--<pre>{{vc.users | json}}</pre>-->
+
+    <button ng-click="vc2.getData()">Get People Data</button>
+    <br/>
+    <br/>
+    <table>
+        <tr ng-repeat="user in vc2.users">
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+        </tr>
+    </table>
+    <br/>
+    <br/>
+
+
+</div>
+

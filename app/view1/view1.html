@@ -1,107 +1,132 @@
+<div ng-controller="View1Ctrl as vc">
 
-<p>The weathers</p>
-
-
-    <div ng-controller="View1Ctrl as vc">
-        <h1>{{vc.foo}}</h1>
-
-        <p>{{vc.message}}</p>
-
-        <!--<pre>{{vc.users | json}}</pre>-->
-
-        <button ng-click="vc.getData()">Get People Data</button>
-        <br />
-        <br />
-        <table>
-            <tr ng-repeat="user in vc.users">
-                <td>{{ user.name }}</td>
-                <td>{{ user.email }}</td>
-            </tr>
-        </table>
-        <br />
-        <br />
-
-
-        Enter a city to search for weathers:<br/>
-        <input type="text" ng-model="vc.city" name="text" placeholder="Enter City..."/>
-        <br/>
-        <input type="radio" ng-model="vc.dayOrFive" value="1">&nbsp;Todays weather
-        <br/>
-        <input type="radio" ng-model="vc.dayOrFive" value="5">&nbsp;5 Day forecast
-        <br/>
-        <button ng-click="vc.selectType()" class="btn btn-default">Bring Me Weather!</button>
-
-        <br /><br/>
-        <table ng-if="vc.weathers" class="table table-striped">
-            <tr>
-                <td>For le locations... {{ vc.weathers.name }}</td>
-            </tr>
-            <tr>
-                <td>Das Windies... {{ vc.weathers.wind.speed }}</td>
-            </tr>
-            <tr>
-                <td>A La Temps... {{ vc.weathers.main.temp}}</td>
-            </tr>
-        </table>
-
-
-
-        <table ng-if="vc.forecast" class="table table-striped">
-            {{vc.forecast.city.name}}
-            <tr>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Temp</th>
-            </tr>
-            <tr ng-repeat="date in vc.forecast.list">
-                <td>{{ date.dt_txt }}</td>
-                <td>{{ date.weather[0].description }}</td>
-                <td>{{ date.main.temp }}</td>
-
-            </tr>
-
-        </table>
-
-
-        <p ng-if="vc.errors">
+    <div class="alert alert-info"> Enter a place in the box below to search a forecast or the current weather</div>
+    <div class="well">
+        <input type="text" ng-model="vc.city" name="text" placeholder="Enter City..."/> &nbsp;
+        <label class="radio-inline"><input type="radio" ng-model="vc.dayOrFive" value="1"> Today </label>
+        <label class="radio-inline"><input type="radio" ng-model="vc.dayOrFive" value="5">5 Day forecast </label>
+        <br/><br/>
+        <button ng-click="vc.selectType()" class="btn btn-default">Rain Dance!</button>
+        <span ng-if="vc.errors" class="error">
             {{vc.errors}}
-        </p>
-
-
-        <br />
-
-        <table class="table table-striped">
-
-            <tr>
-                <th>Date</th>
-            </tr>
-            <tr ng-repeat="date in vc.forecast.list">
-                <th>&nbsp;</th>
-                <th>{{date.dt_txt | date:'dd-MM-yyyy HH:mm:ss'}}</th>
-                <th>Time</th>
-                <th>Time</th>
-                <th>Time</th>
-                <th>Time</th>
-                <th>Time</th>
-                <th>Time</th>
-                <th>Time</th>
-            </tr>
-            <tr>
-                <th>&nbsp;</th>
-                <td>Desc</td>
-                <td>Desc</td>
-                <td>Desc</td>
-                <td>Desc</td>
-                <td>Desc</td>
-                <td>Desc</td>
-                <td>Desc</td>
-                <td>Desc</td>
-            </tr>
-
-        </table>
-
+        </span>
     </div>
+    <br/><br/>
+    <table ng-if="vc.weathers" class="table table-striped">
+        <tr>
+            <th>Location</th>
+            <th>Wind Speed</th>
+            <th>Temperature</th>
+            <th>Sunrise</th>
+            <th>Sunset</th>
+            <!--<th><img src="" /></th>-->
+            <!--<th><img src="./sunset.png" /></th>-->
+        </tr>
+        <tr>
+            <td>{{ vc.weathers.name }}</td>
+            <td>{{ vc.weathers.wind.speed }}</td>
+            <td>{{ vc.weathers.main.temp}}</td>
+            <td>{{ vc.weathers.sys.sunrise }}</td>
+            <td>{{ vc.weathers.sys.sunset }}</td>
+        </tr>
+    </table>
 
+
+    <!--<table ng-if="vc.forecast" class="table table-striped">-->
+        <!--{{vc.forecast.city.name}}-->
+        <!--<tr>-->
+            <!--<th>Date</th>-->
+            <!--<th>Description</th>-->
+            <!--<th>Temp</th>-->
+        <!--</tr>-->
+        <!--<tr ng-repeat="date in vc.forecast.list">-->
+            <!--<td>{{ date.dt_txt }}</td>-->
+            <!--<td>{{ date.weather[0].description }}</td>-->
+            <!--<td>{{ date.main.temp }}</td>-->
+
+        <!--</tr>-->
+
+    <!--</table>-->
+
+    <br/>
+
+    <div style="position:relative" us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></div>
+
+
+    <!--return test data for now-->
+    <table class="table table-striped" ng-repeat="date in vc.fiveDayForecast">
+        <tr>
+            <td rowspan="8">{{date.day}}</td>
+        </tr>
+
+        <tr>
+            <td ng-repeat="time in date.forecast">
+                {{time.time}}
+            </td>
+        </tr>
+        <tr>
+            <td ng-repeat="time in date.forecast">
+                {{time.desc}}
+            </td>
+        </tr>
+        <tr>
+            <td ng-repeat="time in date.forecast">
+                {{time.wind}}
+            </td>
+        </tr>
+        <tr>
+            <td ng-repeat="time in date.forecast">
+                {{time.temp}}
+            </td>
+        </tr>
+    </table>
+
+
+
+
+
+    <!--</table> <table class="table table-striped" ng-repeat="occ in vc.days5">-->
+        <!--<tr>-->
+            <!--<td rowspan="6">{{occ.day}}</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td>0000</td>-->
+            <!--<td>0300</td>-->
+            <!--<td>0600</td>-->
+            <!--<td>0900</td>-->
+            <!--<td>1200</td>-->
+            <!--<td>1500</td>-->
+            <!--<td>1800</td>-->
+            <!--<td>2100</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td>{{occ.1.am3.temp}}</td>-->
+            <!--<td>{{date.return1.three.desc}}</td>-->
+            <!--<td>{{date.return1.six.desc}}</td>-->
+            <!--<td>{{date.return1.nine}}</td>-->
+            <!--<td>{{date.return1.midday}}</td>-->
+            <!--<td>{{date.return1.threePM}}</td>-->
+            <!--<td>{{date.return1.sixPM}}</td>-->
+            <!--<td>{{date.return1.ninePM}}</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td>{{date.return1.midnight}}</td>-->
+            <!--<td>{{date.return1.three.wind}}</td>-->
+            <!--<td>{{date.return1.six}}</td>-->
+            <!--<td>{{date.return1.nine}}</td>-->
+            <!--<td>{{date.return1.midday}}</td>-->
+            <!--<td>{{date.return1.threePM}}</td>-->
+            <!--<td>{{date.return1.sixPM}}</td>-->
+            <!--<td>{{date.return1.ninePM}}</td>-->
+        <!--</tr>-->
+    <!--</table>-->
+
+            <!--<th rowspan="6">{{date.day}}</th>-->
+            <!--<td>{{date.time}}</td>-->
+            <!--<td>{{ date.weather[0].description }}</td>-->
+            <!--<td>{{ date.main.temp }}</td>-->
+            <!--<td>{{ date.wind.speed }}</td>-->
+</div>
 
 
 <!--
