@@ -10,9 +10,7 @@ To get you started you can simply clone the `blind-alpaca` repository and instal
 
 ### Prerequisites
 
-You need git to clone the `angular-seed` repository. You can get git from [here][git].
-
-We also use a number of Node.js tools to initialize and test `angular-seed`. You must have Node.js
+We use a number of Node.js tools to initialize and test `angular-seed`. You must have Node.js
 and its package manager (npm) installed. You can get them from [here][node].
 
 ### Clone `blind-alpaca`
